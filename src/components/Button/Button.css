@@ -1,0 +1,101 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-12) var(--spacing-20);
+  height: 36px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: var(--typography-font-size-14);
+  font-weight: var(--typography-weight-regular);
+  line-height: var(--typography-line-height-20);
+  letter-spacing: var(--typography-letter-spacing-normal);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button__icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Sizes */
+.button--small {
+  height: 32px;
+  padding-inline: var(--spacing-8);
+  font-size: var(--typography-font-size-12);
+  line-height: var(--typography-line-height-16);
+}
+
+.button--medium {
+  height: 36px;
+  padding-inline: var(--spacing-20);
+}
+
+.button--large {
+  height: 44px;
+  padding-inline: var(--spacing-24);
+  font-size: var(--typography-font-size-16);
+  line-height: var(--typography-line-height-24);
+}
+
+/* Primary (filled) */
+.button--primary {
+  background: var(--color-surface-brand);
+  color: var(--color-text-inverse);
+}
+
+.button--primary:hover:not(:disabled),
+.button--primary.button--hover {
+  background: var(--color-blue-600);
+}
+
+.button--primary:disabled,
+.button--primary.button--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Primary outlined */
+.button--primary.button--outlined {
+  background: transparent;
+  border-color: var(--color-surface-brand);
+  color: var(--color-text-brand);
+}
+
+/* Primary text */
+.button--primary.button--text {
+  background: transparent;
+  color: var(--color-text-brand);
+}
+
+.button--primary.button--outlined:hover:not(:disabled),
+.button--primary.button--text:hover:not(:disabled) {
+  background: transparent;
+  color: var(--color-blue-600);
+}
+
+/* Secondary */
+.button--secondary {
+  background: transparent;
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+  opacity: 0.7;
+}
+
+.button--secondary:hover:not(:disabled),
+.button--secondary.button--hover {
+  opacity: 1;
+}
+
+.button--secondary:disabled,
+.button--secondary.button--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

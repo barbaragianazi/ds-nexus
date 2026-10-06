@@ -1,0 +1,161 @@
+.input-field {
+  /* Local aliases. Borders have no semantic token yet, so primitives are used. */
+  --input-border: var(--color-neutral-200);
+  --input-border-hover: var(--color-neutral-300);
+  --input-border-focus: var(--color-blue-500);
+  --input-ring: var(--color-blue-100);
+  --input-height: var(--spacing-40);
+  --input-padding-x: var(--spacing-12);
+  --input-radius: var(--radius-md);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: 100%;
+  font-family: "Nunito Sans", sans-serif;
+  letter-spacing: var(--typography-letter-spacing-normal);
+}
+
+/* Sizes */
+.input-field--sm {
+  --input-height: var(--spacing-36);
+  --input-radius: var(--radius-sm);
+}
+
+.input-field--md {
+  --input-height: var(--spacing-40);
+  --input-radius: var(--radius-md);
+}
+
+.input-field--lg {
+  --input-height: calc(var(--spacing-24) * 2);
+  --input-padding-x: var(--spacing-16);
+  --input-radius: var(--radius-md);
+}
+
+/* States */
+.input-field--error {
+  --input-border: var(--color-feedback-danger-foreground);
+  --input-border-hover: var(--color-feedback-danger-foreground);
+  --input-border-focus: var(--color-feedback-danger-foreground);
+  --input-ring: var(--color-feedback-danger-background);
+}
+
+.input-field--success {
+  --input-border: var(--color-feedback-success-foreground);
+  --input-border-hover: var(--color-feedback-success-foreground);
+  --input-border-focus: var(--color-feedback-success-foreground);
+  --input-ring: var(--color-feedback-success-background);
+}
+
+/* Label */
+.input-field__label {
+  font-size: var(--typography-font-size-14);
+  line-height: var(--typography-line-height-20);
+  font-weight: var(--typography-weight-regular);
+  color: var(--color-text-primary);
+}
+
+.input-field__required {
+  color: var(--color-feedback-danger-foreground);
+}
+
+/* Control */
+.input-field__control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  box-sizing: border-box;
+  height: var(--input-height);
+  padding: 0 var(--input-padding-x);
+  background: var(--color-surface-primary);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  color: var(--color-text-primary);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.input-field__control:hover {
+  border-color: var(--input-border-hover);
+}
+
+.input-field__control:focus-within {
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 var(--spacing-4) var(--input-ring);
+  outline: 2px solid transparent; /* visible in forced-colors mode */
+}
+
+.input-field__input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  font: inherit;
+  font-size: var(--typography-font-size-14);
+  line-height: var(--typography-line-height-20);
+  color: inherit;
+}
+
+.input-field--lg .input-field__input {
+  font-size: var(--typography-font-size-16);
+  line-height: var(--typography-line-height-24);
+}
+
+.input-field__input::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 1;
+}
+
+.input-field__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+/* Read only: readable, no disabled look, quieter border */
+.input-field--readonly .input-field__control {
+  --input-border: var(--color-neutral-100);
+  --input-border-hover: var(--color-neutral-100);
+  border-style: dashed;
+}
+
+/* Disabled */
+.input-field--disabled .input-field__control {
+  background: var(--color-surface-secondary);
+  border-color: var(--color-surface-secondary);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.input-field--disabled .input-field__input {
+  cursor: not-allowed;
+  color: var(--color-text-disabled);
+}
+
+.input-field--disabled .input-field__input::placeholder,
+.input-field--disabled .input-field__icon,
+.input-field--disabled .input-field__label {
+  color: var(--color-text-disabled);
+}
+
+/* Message */
+.input-field__message {
+  margin: 0;
+  font-size: var(--typography-font-size-12);
+  line-height: var(--typography-line-height-16);
+  color: var(--color-text-secondary);
+}
+
+.input-field--error .input-field__message {
+  color: var(--color-feedback-danger-foreground);
+}
+
+.input-field--success .input-field__message {
+  color: var(--color-feedback-success-foreground);
+}

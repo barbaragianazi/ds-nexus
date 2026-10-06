@@ -1,0 +1,195 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-24);
+  /* Overlay is not specified in Figma; neutral-900 at 60% */
+  background: color-mix(in srgb, var(--color-neutral-900) 60%, transparent);
+}
+
+.modal {
+  /* Figma `container/high` (#efeff1) and `surface/primary` (#fafafa) have no tokens in tokens.css yet. */
+  --modal-container: #efeff1;
+  --modal-surface: #fafafa;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 100%;
+  border-radius: var(--radius-xl);
+  color: var(--color-text-primary);
+  font-family: "Nunito Sans", sans-serif;
+  letter-spacing: var(--typography-letter-spacing-normal);
+  outline: none;
+}
+
+.modal--action {
+  max-width: 448px;
+  background: var(--modal-container);
+}
+
+.modal--content {
+  max-width: 804px;
+  background: var(--modal-surface);
+  overflow: hidden;
+}
+
+/* Header (content variant) */
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-height: calc(var(--spacing-24) * 2);
+  padding: 0 var(--spacing-24);
+  background: var(--color-surface-brand);
+  color: var(--color-text-inverse);
+}
+
+/* Body */
+.modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  padding: var(--spacing-24);
+  overflow: auto;
+}
+
+.modal__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--spacing-24) * 2);
+  height: calc(var(--spacing-24) * 2);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-secondary);
+}
+
+.modal__icon img {
+  display: block;
+}
+
+.modal--success .modal__icon {
+  background: var(--color-feedback-success-background);
+}
+
+.modal--alert .modal__icon {
+  background: var(--color-feedback-warning-background);
+}
+
+.modal--error .modal__icon {
+  background: var(--color-feedback-danger-background);
+}
+
+/* Figma: spacing/8 between the icon row and the text, spacing/16 before the footer. */
+.modal__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin-top: calc(var(--spacing-8) * -1);
+}
+
+.modal__title {
+  margin: 0;
+  font-size: var(--typography-font-size-20);
+  font-weight: var(--typography-weight-bold);
+  line-height: var(--typography-line-height-28);
+}
+
+.modal__description {
+  margin: 0;
+  font-size: var(--typography-font-size-14);
+  font-weight: var(--typography-weight-regular);
+  line-height: var(--typography-line-height-20);
+}
+
+/* Close button */
+.modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-24);
+  height: var(--spacing-24);
+  padding: 0;
+  margin-left: auto;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+}
+
+.modal__close:focus-visible {
+  outline: 2px solid var(--color-blue-500);
+  outline-offset: 2px;
+}
+
+.modal--content .modal__close:focus-visible {
+  outline-color: var(--color-text-inverse);
+}
+
+.modal__close img {
+  display: block;
+}
+
+/* Content slot */
+.modal__content {
+  min-height: 0;
+}
+
+/* Footer */
+.modal__footer {
+  display: flex;
+  gap: var(--spacing-16);
+  align-items: center;
+}
+
+.modal--content .modal__footer {
+  justify-content: center;
+}
+
+/* Buttons reuse <Button>; only layout and tone are adapted here. */
+.modal__action {
+  flex: 0 0 192px;
+  width: 192px;
+}
+
+.modal--action .modal__action {
+  flex: 1 1 0;
+  width: auto;
+}
+
+.modal__action--secondary {
+  opacity: 1;
+}
+
+.modal__action--primary {
+  font-weight: var(--typography-weight-bold);
+}
+
+.modal--success .modal__action--primary {
+  background: var(--color-feedback-success-foreground);
+}
+
+.modal--alert .modal__action--primary {
+  background: var(--color-feedback-warning-foreground);
+}
+
+.modal--error .modal__action--primary {
+  background: var(--color-feedback-danger-foreground);
+}
+
+.modal--success .modal__action--primary:hover:not(:disabled),
+.modal--alert .modal__action--primary:hover:not(:disabled),
+.modal--error .modal__action--primary:hover:not(:disabled) {
+  filter: brightness(0.85);
+}
