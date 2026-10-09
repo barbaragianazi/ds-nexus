@@ -1,3 +1,4 @@
+// Página de documentação da escala de espaçamento (spacing) no Storybook.
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { DocsGrid, DocsPage, DocsSection, TokenCard } from './FoundationsDocs'
 import { byValue, primitiveTokens, tokensIn } from './tokenUtils'

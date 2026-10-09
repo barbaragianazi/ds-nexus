@@ -1,3 +1,4 @@
+// Componente Input: campo de texto com label, mensagem de apoio e estados de erro/sucesso.
 import { forwardRef, useId } from "react";
 import type { InputHTMLAttributes, ReactNode } from "react";
 import "./Input.css";

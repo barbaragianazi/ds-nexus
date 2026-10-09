@@ -1,3 +1,4 @@
+// Página de documentação de Glow no Storybook.
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { EffectPage } from './EffectPage'
 

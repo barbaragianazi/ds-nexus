@@ -1,3 +1,4 @@
+// Página compartilhada de documentação de efeitos (sombras e glow).
 import { DocsGrid, DocsPage, DocsSection, TokenCard } from './FoundationsDocs'
 import { hasCssVar, primitiveTokens, tokensIn } from './tokenUtils'
 
@@ -20,6 +21,8 @@ export function EffectPage({ group, title, description }: { group: 'shadow' | 'g
             const parts = PARTS.flatMap((p) => effects.filter((t) => t.path[2] === size && t.path[3] === p))
             const composed = `--${group}-${size}`
             const composedExists = hasCssVar(composed)
+            // x/y/blur/spread são o conteúdo do token, não detalhe técnico: ficam sempre visíveis.
+            const partsSummary = parts.map((t) => `${t.path[3]} ${t.value}`).join(' · ')
             const boxShadow = composedExists
               ? `var(${composed})`
               : `${parts.map((t) => `var(${t.cssVar})`).join(' ')} ${PREVIEW_FALLBACK_COLOR}`
@@ -28,15 +31,10 @@ export function EffectPage({ group, title, description }: { group: 'shadow' | 'g
                 key={size}
                 token={{ ...parts[0], name: `effects/${group}/${size}`, cssVar: composed, value: '' }}
                 title={size}
-                value={composedExists ? undefined : 'sem variável composta (cor de preview)'}
+                value={composedExists ? partsSummary : `${partsSummary} · sem variável composta (cor de preview)`}
                 stage
                 preview={<div style={{ width: 120, height: 80, borderRadius: 8, background: 'var(--color-neutral-0)', boxShadow }} />}
                 cssVars={[composed, ...parts.map((t) => t.cssVar)]}
-                details={parts.map((t) => (
-                  <span key={t.cssVar} className="ds-docs__value">
-                    {t.path[3]}: {t.value}
-                  </span>
-                ))}
               />
             )
           })}

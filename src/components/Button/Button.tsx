@@ -1,3 +1,4 @@
+// Componente Button: botão com variantes, tamanhos, estados e ícones opcionais.
 import type { ButtonHTMLAttributes } from "react";
 import "./Button.css";
 

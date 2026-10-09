@@ -1,3 +1,4 @@
+// Stories do Modal no Storybook.
 import { useState } from "react";
 import type { ComponentProps } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";

@@ -1,3 +1,4 @@
+// Configuração do ESLint (TypeScript, React Hooks, React Refresh e Storybook).
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import storybook from "eslint-plugin-storybook";
 
@@ -19,4 +20,8 @@ export default defineConfig([globalIgnores(['dist']), {
   languageOptions: {
     globals: globals.browser,
   },
+}, {
+  // O manager do Storybook não usa Fast Refresh e não exporta nada: a regra não se aplica.
+  files: ['.storybook/**/*.{ts,tsx}'],
+  rules: { 'react-refresh/only-export-components': 'off' },
 }, ...storybook.configs["flat/recommended"]])

@@ -1,0 +1,11 @@
+/* Entrada do Tailwind v4 no Design System Nexus.
+   Preflight (reset) fica de fora de propósito: os componentes atuais usam CSS próprio
+   e o reset alteraria o visual deles. Para ativá-lo, troque as linhas de theme/utilities
+   por: @import "tailwindcss"; */
+@layer theme, base, components, utilities;
+
+/* tokens.css primeiro: define as CSS variables referenciadas pelo tema. */
+@import "../tokens/tokens.css";
+@import "tailwindcss/theme.css" layer(theme);
+@import "../tokens/tailwind-theme.css";
+@import "tailwindcss/utilities.css" layer(utilities);

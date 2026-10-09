@@ -1,9 +1,10 @@
+/* Estilos do componente Input (tamanhos, estados, hover e focus). */
 .input-field {
-  /* Local aliases. Borders have no semantic token yet, so primitives are used. */
-  --input-border: var(--color-neutral-200);
-  --input-border-hover: var(--color-neutral-300);
-  --input-border-focus: var(--color-blue-500);
-  --input-ring: var(--color-blue-100);
+  /* Local aliases to the semantic border tokens (they switch with the theme). */
+  --input-border: var(--color-border-default);
+  --input-border-hover: var(--color-border-hover);
+  --input-border-focus: var(--color-border-focus);
+  --input-ring: var(--color-border-focus-ring);
   --input-height: var(--spacing-40);
   --input-padding-x: var(--spacing-12);
   --input-radius: var(--radius-md);
@@ -120,8 +121,8 @@
 
 /* Read only: readable, no disabled look, quieter border */
 .input-field--readonly .input-field__control {
-  --input-border: var(--color-neutral-100);
-  --input-border-hover: var(--color-neutral-100);
+  --input-border: var(--color-border-readonly);
+  --input-border-hover: var(--color-border-readonly);
   border-style: dashed;
 }
 

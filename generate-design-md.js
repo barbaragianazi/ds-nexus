@@ -1,13 +1,16 @@
+// Script que gera o design.md a partir dos JSON de tokens e dos componentes. Rode com npm run generate:design.
 import fs from "fs";
 import path from "path";
 
-// Gera design.md a partir de src/tokens/{primitives,semantics}.json e de src/components.
+// Gera design.md a partir de src/tokens/{primitives,semantics.light.tokens,semantics.dark.tokens}.json e de src/components.
 // Uso: node generate-design-md.js
 
 const read = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
 
 const primitives = read("./src/tokens/primitives.json");
-const semantics = read("./src/tokens/semantics.json");
+// O Figma exporta um arquivo por modo da coleção semantics.
+const semantics = read("./src/tokens/semantics.light.tokens.json");
+const semanticsDark = read("./src/tokens/semantics.dark.tokens.json");
 
 // Caminhos cujos valores numéricos levam "px".
 const PX_GROUPS = new Set([
@@ -95,11 +98,26 @@ function primitiveLines(tokens) {
   return tokens.map(({ path: p, token }) => `- \`${fullName(p)}\`: \`${formatValue(p, token)}\``);
 }
 
+// Tokens do modo dark indexados pelo nome completo.
+const darkByName = new Map(collect(semanticsDark).map(({ path: p, token }) => [fullName(p), { p, token }]));
+
 function semanticLines(tokens) {
   return tokens.flatMap(({ path: p, token }) => {
-    const lines = [`- \`${fullName(p)}\``, `  - value: \`${formatValue(p, token)}\``];
+    const lines = [`- \`${fullName(p)}\``, `  - value (light): \`${formatValue(p, token)}\``];
     const alias = aliasOf(token);
-    if (alias) lines.push(`  - alias: \`${alias}\``);
+    if (alias) lines.push(`  - alias (light): \`${alias}\``);
+
+    const dark = darkByName.get(fullName(p));
+    if (dark) {
+      const darkValue = formatValue(dark.p, dark.token);
+      const darkAlias = aliasOf(dark.token);
+      if (darkValue === formatValue(p, token) && darkAlias === alias) {
+        lines.push("  - dark: igual ao light");
+      } else {
+        lines.push(`  - value (dark): \`${darkValue}\``);
+        if (darkAlias) lines.push(`  - alias (dark): \`${darkAlias}\``);
+      }
+    }
     return lines;
   });
 }
@@ -160,7 +178,7 @@ function semanticSection() {
   const out = [
     "## Semantic Tokens",
     "",
-    "Tokens com intenção de uso (`src/tokens/semantics.json`). O alias indica o primitive de origem e só aparece quando o Figma o exporta.",
+    "Tokens com intenção de uso (`src/tokens/semantics.light.tokens.json` e `semantics.dark.tokens.json`, um arquivo por modo). O alias indica o primitive de origem e só aparece quando o Figma o exporta. O tema escuro vale quando `<html data-theme=\"dark\">`; sem o atributo, vale o light.",
     "",
   ];
 
@@ -294,7 +312,7 @@ const header = [
   "> Status: em construção",
   "> Este documento é gerado automaticamente a partir dos tokens do Design System e será evoluído junto com os componentes e regras de uso.",
   "",
-  "Arquivo gerado por `generate-design-md.js`. Não edite manualmente: altere os tokens ou o código e gere novamente com `npm run generate:design` (ou `npm run generate:ds` para atualizar também o `tokens.css`).",
+  "Arquivo gerado por `generate-design-md.js`. Não edite manualmente: altere os tokens ou o código e gere novamente com `npm run generate:design` (ou `npm run generate:ds` para atualizar também `tokens.css`, `tokens.flat.json` e `tailwind-theme.css`).",
   "",
   "O Design System ainda está em desenvolvimento:",
   "",
@@ -315,6 +333,30 @@ const rules = [
   "- Não criar novos tokens diretamente no código sem refletir essa decisão no Design System/Figma.",
   "- O Storybook é a referência visual e funcional dos componentes implementados.",
   "- O design.md é a referência textual estruturada para pessoas e agentes de IA.",
+  "",
+];
+
+const tailwind = [
+  "## Tailwind CSS",
+  "",
+  "- Tailwind CSS v4 é suportado pelo Design System.",
+  "- `primitives.json`, `semantics.light.tokens.json` e `semantics.dark.tokens.json` continuam sendo a fonte de verdade.",
+  "- `src/tokens/tokens.css` contém as CSS Custom Properties oficiais.",
+  "- `src/tokens/tailwind-theme.css` expõe tokens selecionados para utilities Tailwind, sempre via `var(--...)` de `tokens.css` e com o prefixo `nexus`.",
+  "- `src/styles/tailwind.css` é a entrada do Tailwind (theme + utilities, sem preflight).",
+  "- Componentes devem priorizar semantic tokens.",
+  "- Valores arbitrários devem ser evitados quando existir token equivalente.",
+  "- `tokens.css` e `tailwind-theme.css` são arquivos gerados por `generate-tokens.js` e não devem ser editados manualmente.",
+  "",
+  "Utilities disponíveis:",
+  "",
+  "- Cores (semantics): `bg-nexus-surface-brand`, `text-nexus-text-primary`, `border-nexus-feedback-danger-default`",
+  "- Radius (semantics): `rounded-nexus-md`",
+  "- Spacing (primitives): `p-nexus-16`, `gap-nexus-8`, `m-nexus-4`",
+  "- Tipografia: `text-nexus-16` (font-size), `leading-nexus-24`, `tracking-nexus-wide`, `font-nexus-bold`",
+  "- Efeitos: `shadow-nexus-md`, `shadow-nexus-glow-md`",
+  "",
+  "Primitives de cor (`--color-blue-500` etc.) ficam disponíveis apenas via `var()` em `tokens.css`, sem utility Tailwind.",
   "",
 ];
 
@@ -348,6 +390,12 @@ const maintenance = [
   "",
   "Comando: `npm run generate:ds`",
   "",
+  "Fluxo ao atualizar tokens do Figma:",
+  "",
+  "1. Atualize `src/tokens/primitives.json`, `src/tokens/semantics.light.tokens.json` e `src/tokens/semantics.dark.tokens.json` com o export do Figma.",
+  "2. Rode `npm run dev`, `npm run storybook` ou `npm run build`: o `generate:ds` roda automaticamente antes e tudo já está atualizado.",
+  "3. Para só regenerar os arquivos, sem subir nada, use `npm run generate:ds`.",
+  "",
 ];
 
 const doc = [
@@ -355,6 +403,7 @@ const doc = [
   ...rules,
   ...primitiveSection(),
   ...semanticSection(),
+  ...tailwind,
   ...componentSection(),
   ...maturity,
   ...maintenance,

@@ -702,6 +702,22 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:197:430"
         }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.16470588743686676,
+            0.05882352963089943,
+            0.062745101749897
+          ],
+          "alpha": 1,
+          "hex": "#2A0F10"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:320:101"
+        }
       }
     },
     "warning": {
@@ -751,6 +767,22 @@
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:197:436"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.16470588743686676,
+            0.125490203499794,
+            0.0313725508749485
+          ],
+          "alpha": 1,
+          "hex": "#2A2008"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:320:102"
         }
       }
     },
@@ -802,6 +834,22 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:197:439"
         }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.04313725605607033,
+            0.16470588743686676,
+            0.10588235408067703
+          ],
+          "alpha": 1,
+          "hex": "#0B2A1B"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:320:103"
+        }
       }
     },
     "info": {
@@ -851,6 +899,22 @@
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:197:442"
+        }
+      },
+      "900": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0470588244497776,
+            0.11764705926179886,
+            0.21176470816135406
+          ],
+          "alpha": 1,
+          "hex": "#0C1E36"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:321:104"
         }
       }
     }
@@ -961,6 +1025,16 @@
       "$value": 42,
       "$extensions": {
         "com.figma.variableId": "VariableID:229:106",
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "44": {
+      "$type": "number",
+      "$value": 44,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:314:75",
         "com.figma.scopes": [
           "GAP"
         ]

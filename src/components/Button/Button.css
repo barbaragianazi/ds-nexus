@@ -1,3 +1,4 @@
+/* Estilos do componente Button (variantes, tamanhos e estados). */
 .button {
   display: inline-flex;
   align-items: center;
@@ -53,7 +54,7 @@
 
 .button--primary:hover:not(:disabled),
 .button--primary.button--hover {
-  background: var(--color-blue-600);
+  background: var(--color-surface-brand-hover);
 }
 
 .button--primary:disabled,
@@ -78,7 +79,7 @@
 .button--primary.button--outlined:hover:not(:disabled),
 .button--primary.button--text:hover:not(:disabled) {
   background: transparent;
-  color: var(--color-blue-600);
+  color: var(--color-text-brand-hover);
 }
 
 /* Secondary */

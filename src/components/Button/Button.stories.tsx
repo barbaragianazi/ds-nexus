@@ -1,3 +1,4 @@
+// Stories do Button no Storybook.
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./Button";
 
@@ -10,8 +11,8 @@ const meta = {
     size: "medium",
     state: "enabled",
     hasText: true,
-    iconLeft: true,
-    iconRight: true,
+    iconLeft: false,
+    iconRight: false,
   },
   argTypes: {
     variant: { control: "inline-radio", options: ["primary", "secondary"] },
@@ -41,6 +42,12 @@ export const Outlined: Story = { args: { state: "outlined" } };
 export const Text: Story = { args: { state: "text" } };
 
 export const Secondary: Story = { args: { variant: "secondary" } };
+
+export const IconLeft: Story = { args: { iconLeft: true } };
+
+export const IconRight: Story = { args: { iconRight: true } };
+
+export const IconBoth: Story = { args: { iconLeft: true, iconRight: true } };
 
 export const AllVariants: Story = {
   render: (args) => (

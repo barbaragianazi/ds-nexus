@@ -1,3 +1,4 @@
+// Stories do Input no Storybook.
 import type { CSSProperties } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Input } from "./Input";
@@ -10,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Campo de texto com label, mensagem de apoio e estados de erro/sucesso. Hover e focus são tratados via CSS, sem props. Bordas usam primitives neutral/blue até existir um token semântico de border.",
+          "Campo de texto com label, mensagem de apoio e estados de erro/sucesso. Hover e focus são tratados via CSS, sem props. As bordas usam os tokens semânticos border/* e acompanham o tema claro/escuro.",
       },
     },
   },

@@ -1,3 +1,4 @@
+// Página de documentação de tipografia no Storybook.
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { DocsGrid, DocsPage, DocsSection, TokenCard } from './FoundationsDocs'
 import { byValue, primitiveTokens, tokensIn } from './tokenUtils'
@@ -57,7 +58,7 @@ function TypographyPage() {
                     fontSize: 14,
                     lineHeight: `var(${token.cssVar})`,
                     color: 'inherit',
-                    backgroundImage: `repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(${token.cssVar}) - 1px), #dcdde0 calc(var(${token.cssVar}) - 1px), #dcdde0 var(${token.cssVar}))`,
+                    backgroundImage: `repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(${token.cssVar}) - 1px), var(--d-border) calc(var(${token.cssVar}) - 1px), var(--d-border) var(${token.cssVar}))`,
                   }}
                 >
                   Design systems keep products consistent. Tokens turn decisions into code. Every line shares the same height.

@@ -1,3 +1,4 @@
+// Página de documentação dos raios de borda (radius) no Storybook.
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { AliasLine, DocsGrid, DocsPage, DocsSection, TokenCard } from './FoundationsDocs'
 import { byValue, primitiveTokens, semanticTokens, tokensIn, type Token } from './tokenUtils'

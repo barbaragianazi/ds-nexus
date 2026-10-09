@@ -1,3 +1,4 @@
+/* Estilos do componente Modal (overlay, caixa, cabeçalho, conteúdo e ações). */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -11,10 +12,6 @@
 }
 
 .modal {
-  /* Figma `container/high` (#efeff1) and `surface/primary` (#fafafa) have no tokens in tokens.css yet. */
-  --modal-container: #efeff1;
-  --modal-surface: #fafafa;
-
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -29,12 +26,12 @@
 
 .modal--action {
   max-width: 448px;
-  background: var(--modal-container);
+  background: var(--color-container-high);
 }
 
 .modal--content {
   max-width: 804px;
-  background: var(--modal-surface);
+  background: var(--color-container-high);
   overflow: hidden;
 }
 
@@ -125,11 +122,13 @@
   border: none;
   border-radius: var(--radius-sm);
   background: transparent;
+  /* The action-variant icon is an inline SVG that takes this color (see CloseIcon). */
+  color: var(--color-text-primary);
   cursor: pointer;
 }
 
 .modal__close:focus-visible {
-  outline: 2px solid var(--color-blue-500);
+  outline: 2px solid var(--color-text-brand);
   outline-offset: 2px;
 }
 
@@ -188,8 +187,22 @@
   background: var(--color-feedback-danger-foreground);
 }
 
+/* Hover keeps the tone color (a bit darker). The background is repeated on purpose:
+   Button.css sets its own hover background and would otherwise win with the brand blue. */
 .modal--success .modal__action--primary:hover:not(:disabled),
 .modal--alert .modal__action--primary:hover:not(:disabled),
 .modal--error .modal__action--primary:hover:not(:disabled) {
   filter: brightness(0.85);
+}
+
+.modal--success .modal__action--primary:hover:not(:disabled) {
+  background: var(--color-feedback-success-foreground);
+}
+
+.modal--alert .modal__action--primary:hover:not(:disabled) {
+  background: var(--color-feedback-warning-foreground);
+}
+
+.modal--error .modal__action--primary:hover:not(:disabled) {
+  background: var(--color-feedback-danger-foreground);
 }

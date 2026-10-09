@@ -3,7 +3,7 @@
 > Status: em construção
 > Este documento é gerado automaticamente a partir dos tokens do Design System e será evoluído junto com os componentes e regras de uso.
 
-Arquivo gerado por `generate-design-md.js`. Não edite manualmente: altere os tokens ou o código e gere novamente com `npm run generate:design` (ou `npm run generate:ds` para atualizar também o `tokens.css`).
+Arquivo gerado por `generate-design-md.js`. Não edite manualmente: altere os tokens ou o código e gere novamente com `npm run generate:design` (ou `npm run generate:ds` para atualizar também `tokens.css`, `tokens.flat.json` e `tailwind-theme.css`).
 
 O Design System ainda está em desenvolvimento:
 
@@ -60,24 +60,28 @@ Valores-base exportados do Figma (`src/tokens/primitives.json`).
 - `color/danger/100`: `#F3AEAE`
 - `color/danger/500`: `#EB6F70`
 - `color/danger/700`: `#EC2D30`
+- `color/danger/900`: `#2A0F10`
 
 #### Warning
 
 - `color/warning/100`: `#EBD6AE`
 - `color/warning/500`: `#FFC62B`
 - `color/warning/700`: `#FE9B0E`
+- `color/warning/900`: `#2A2008`
 
 #### Success
 
 - `color/success/100`: `#AEEBC4`
 - `color/success/500`: `#6BC497`
 - `color/success/700`: `#0C9D61`
+- `color/success/900`: `#0B2A1B`
 
 #### Info
 
 - `color/info/100`: `#F1F8FF`
 - `color/info/500`: `#4BA1FF`
 - `color/info/700`: `#3A70E2`
+- `color/info/900`: `#0C1E36`
 
 ### Typography
 
@@ -136,6 +140,7 @@ Valores-base exportados do Figma (`src/tokens/primitives.json`).
 - `spacing/36`: `36px`
 - `spacing/40`: `40px`
 - `spacing/42`: `42px`
+- `spacing/44`: `44px`
 
 ### Radius
 
@@ -165,133 +170,251 @@ A cor de shadow e glow não está presente nos tokens exportados e, por isso, n�
 
 ## Semantic Tokens
 
-Tokens com intenção de uso (`src/tokens/semantics.json`). O alias indica o primitive de origem e só aparece quando o Figma o exporta.
+Tokens com intenção de uso (`src/tokens/semantics.light.tokens.json` e `semantics.dark.tokens.json`, um arquivo por modo). O alias indica o primitive de origem e só aparece quando o Figma o exporta. O tema escuro vale quando `<html data-theme="dark">`; sem o atributo, vale o light.
 
 ### Text
 
 - `color/text/primary`
-  - value: `#060606`
-  - alias: `color/neutral/900`
+  - value (light): `#060606`
+  - alias (light): `color/neutral/900`
+  - value (dark): `#FFFFFF`
+  - alias (dark): `color/neutral/0`
 - `color/text/secondary`
-  - value: `#222425`
-  - alias: `color/neutral/500`
+  - value (light): `#222425`
+  - alias (light): `color/neutral/500`
+  - value (dark): `#D3D3D3`
+  - alias (dark): `color/neutral/100`
 - `color/text/tertiary`
-  - value: `#4E5051`
-  - alias: `color/neutral/300`
+  - value (light): `#4E5051`
+  - alias (light): `color/neutral/300`
+  - value (dark): `#A7A7A8`
+  - alias (dark): `color/neutral/200`
 - `color/text/disabled`
-  - value: `#A7A7A8`
-  - alias: `color/neutral/200`
+  - value (light): `#A7A7A8`
+  - alias (light): `color/neutral/200`
+  - value (dark): `#4E5051`
+  - alias (dark): `color/neutral/300`
 - `color/text/brand`
-  - value: `#0D88C3`
-  - alias: `color/blue/500`
+  - value (light): `#0D88C3`
+  - alias (light): `color/blue/500`
+  - value (dark): `#3DA0CF`
+  - alias (dark): `color/blue/300`
+- `color/text/brand-hover`
+  - value (light): `#0A608A`
+  - alias (light): `color/blue/600`
+  - value (dark): `#6EB8DB`
+  - alias (dark): `color/blue/200`
 - `color/text/inverse`
-  - value: `#FFFFFF`
-  - alias: `color/neutral/0`
+  - value (light): `#FFFFFF`
+  - alias (light): `color/neutral/0`
+  - value (dark): `#060606`
+  - alias (dark): `color/neutral/900`
 
 ### Feedback
 
 - `color/feedback/danger/foreground`
-  - value: `#EC2D30`
-  - alias: `color/danger/700`
+  - value (light): `#EC2D30`
+  - alias (light): `color/danger/700`
+  - value (dark): `#F3AEAE`
+  - alias (dark): `color/danger/100`
 - `color/feedback/danger/default`
-  - value: `#EB6F70`
-  - alias: `color/danger/500`
+  - value (light): `#EB6F70`
+  - alias (light): `color/danger/500`
+  - dark: igual ao light
 - `color/feedback/danger/background`
-  - value: `#F3AEAE`
-  - alias: `color/danger/100`
+  - value (light): `#F3AEAE`
+  - alias (light): `color/danger/100`
+  - value (dark): `#2A0F10`
+  - alias (dark): `color/danger/900`
 - `color/feedback/warning/foreground`
-  - value: `#FE9B0E`
-  - alias: `color/warning/700`
+  - value (light): `#FE9B0E`
+  - alias (light): `color/warning/700`
+  - value (dark): `#EBD6AE`
+  - alias (dark): `color/warning/100`
 - `color/feedback/warning/default`
-  - value: `#FFC62B`
-  - alias: `color/warning/500`
+  - value (light): `#FFC62B`
+  - alias (light): `color/warning/500`
+  - dark: igual ao light
 - `color/feedback/warning/background`
-  - value: `#EBD6AE`
-  - alias: `color/warning/100`
+  - value (light): `#EBD6AE`
+  - alias (light): `color/warning/100`
+  - value (dark): `#2A2008`
+  - alias (dark): `color/warning/900`
 - `color/feedback/success/foreground`
-  - value: `#0C9D61`
-  - alias: `color/success/700`
+  - value (light): `#0C9D61`
+  - alias (light): `color/success/700`
+  - value (dark): `#AEEBC4`
+  - alias (dark): `color/success/100`
 - `color/feedback/success/default`
-  - value: `#6BC497`
-  - alias: `color/success/500`
+  - value (light): `#6BC497`
+  - alias (light): `color/success/500`
+  - dark: igual ao light
 - `color/feedback/success/background`
-  - value: `#AEEBC4`
-  - alias: `color/success/100`
+  - value (light): `#AEEBC4`
+  - alias (light): `color/success/100`
+  - value (dark): `#0B2A1B`
+  - alias (dark): `color/success/900`
 - `color/feedback/info/foreground`
-  - value: `#3A70E2`
-  - alias: `color/info/700`
+  - value (light): `#3A70E2`
+  - alias (light): `color/info/700`
+  - value (dark): `#F1F8FF`
+  - alias (dark): `color/info/100`
 - `color/feedback/info/default`
-  - value: `#4BA1FF`
-  - alias: `color/info/500`
+  - value (light): `#4BA1FF`
+  - alias (light): `color/info/500`
+  - dark: igual ao light
 - `color/feedback/info/background`
-  - value: `#F1F8FF`
-  - alias: `color/info/100`
+  - value (light): `#F1F8FF`
+  - alias (light): `color/info/100`
+  - value (dark): `#0C1E36`
+  - alias (dark): `color/info/900`
+
+### Border
+
+- `color/border/default`
+  - value (light): `#A7A7A8`
+  - alias (light): `color/neutral/200`
+  - value (dark): `#4E5051`
+  - alias (dark): `color/neutral/300`
+- `color/border/hover`
+  - value (light): `#4E5051`
+  - alias (light): `color/neutral/300`
+  - value (dark): `#A7A7A8`
+  - alias (dark): `color/neutral/200`
+- `color/border/readonly`
+  - value (light): `#D3D3D3`
+  - alias (light): `color/neutral/100`
+  - value (dark): `#38393A`
+  - alias (dark): `color/neutral/400`
+- `color/border/focus`
+  - value (light): `#0D88C3`
+  - alias (light): `color/blue/500`
+  - dark: igual ao light
+- `color/border/focus-ring`
+  - value (light): `#9ECFE7`
+  - alias (light): `color/blue/100`
+  - value (dark): `#074867`
+  - alias (dark): `color/blue/700`
 
 ### Surface
 
 - `color/surface/primary`
-  - value: `#FFFFFF`
-  - alias: `color/neutral/0`
+  - value (light): `#FFFFFF`
+  - alias (light): `color/neutral/0`
+  - value (dark): `#060606`
+  - alias (dark): `color/neutral/900`
 - `color/surface/secondary`
-  - value: `#D3D3D3`
-  - alias: `color/neutral/100`
+  - value (light): `#D3D3D3`
+  - alias (light): `color/neutral/100`
+  - value (dark): `#151717`
+  - alias (dark): `color/neutral/600`
 - `color/surface/tertiary`
-  - value: `#A7A7A8`
-  - alias: `color/neutral/200`
+  - value (light): `#A7A7A8`
+  - alias (light): `color/neutral/200`
+  - value (dark): `#38393A`
+  - alias (dark): `color/neutral/400`
 - `color/surface/brand`
-  - value: `#0D88C3`
-  - alias: `color/blue/500`
+  - value (light): `#0D88C3`
+  - alias (light): `color/blue/500`
+  - dark: igual ao light
+- `color/surface/brand-hover`
+  - value (light): `#0A608A`
+  - alias (light): `color/blue/600`
+  - value (dark): `#2594C9`
+  - alias (dark): `color/blue/400`
 - `color/surface/inverse`
-  - value: `#060606`
-  - alias: `color/neutral/900`
+  - value (light): `#060606`
+  - alias (light): `color/neutral/900`
+  - value (dark): `#FFFFFF`
+  - alias (dark): `color/neutral/0`
 
 ### On Surface
 
 - `color/on-surface/primary`
-  - value: `#060606`
-  - alias: `color/neutral/900`
+  - value (light): `#060606`
+  - alias (light): `color/neutral/900`
+  - value (dark): `#FFFFFF`
+  - alias (dark): `color/neutral/0`
 - `color/on-surface/secondary`
-  - value: `#151717`
-  - alias: `color/neutral/600`
+  - value (light): `#151717`
+  - alias (light): `color/neutral/600`
+  - value (dark): `#D3D3D3`
+  - alias (dark): `color/neutral/100`
 - `color/on-surface/tertiary`
-  - value: `#222425`
-  - alias: `color/neutral/500`
+  - value (light): `#222425`
+  - alias (light): `color/neutral/500`
+  - value (dark): `#A7A7A8`
+  - alias (dark): `color/neutral/200`
 
 ### Container
 
 - `color/container/high`
-  - value: `#A7A7A8`
-  - alias: `color/neutral/200`
+  - value (light): `#A7A7A8`
+  - alias (light): `color/neutral/200`
+  - value (dark): `#38393A`
+  - alias (dark): `color/neutral/400`
 - `color/container/default`
-  - value: `#D3D3D3`
-  - alias: `color/neutral/100`
+  - value (light): `#D3D3D3`
+  - alias (light): `color/neutral/100`
+  - value (dark): `#151717`
+  - alias (dark): `color/neutral/600`
 - `color/container/low`
-  - value: `#D2D2D2`
-  - alias: `color/neutral/50`
+  - value (light): `#D2D2D2`
+  - alias (light): `color/neutral/50`
+  - value (dark): `#101011`
+  - alias (dark): `color/neutral/700`
 
 ### Radius
 
 - `radius/0`
-  - value: `0px`
-  - alias: `radius/0`
+  - value (light): `0px`
+  - alias (light): `radius/0`
+  - dark: igual ao light
 - `radius/sm`
-  - value: `4px`
-  - alias: `radius/4`
+  - value (light): `4px`
+  - alias (light): `radius/4`
+  - dark: igual ao light
 - `radius/md`
-  - value: `8px`
-  - alias: `radius/8`
+  - value (light): `8px`
+  - alias (light): `radius/8`
+  - dark: igual ao light
 - `radius/lg`
-  - value: `12px`
-  - alias: `radius/12`
+  - value (light): `12px`
+  - alias (light): `radius/12`
+  - dark: igual ao light
 - `radius/xl`
-  - value: `16px`
-  - alias: `radius/16`
+  - value (light): `16px`
+  - alias (light): `radius/16`
+  - dark: igual ao light
 - `radius/2xl`
-  - value: `24px`
-  - alias: `radius/24`
+  - value (light): `24px`
+  - alias (light): `radius/24`
+  - dark: igual ao light
 - `radius/pill`
-  - value: `9999px`
-  - alias: `radius/pill`
+  - value (light): `9999px`
+  - alias (light): `radius/pill`
+  - dark: igual ao light
+
+## Tailwind CSS
+
+- Tailwind CSS v4 é suportado pelo Design System.
+- `primitives.json`, `semantics.light.tokens.json` e `semantics.dark.tokens.json` continuam sendo a fonte de verdade.
+- `src/tokens/tokens.css` contém as CSS Custom Properties oficiais.
+- `src/tokens/tailwind-theme.css` expõe tokens selecionados para utilities Tailwind, sempre via `var(--...)` de `tokens.css` e com o prefixo `nexus`.
+- `src/styles/tailwind.css` é a entrada do Tailwind (theme + utilities, sem preflight).
+- Componentes devem priorizar semantic tokens.
+- Valores arbitrários devem ser evitados quando existir token equivalente.
+- `tokens.css` e `tailwind-theme.css` são arquivos gerados por `generate-tokens.js` e não devem ser editados manualmente.
+
+Utilities disponíveis:
+
+- Cores (semantics): `bg-nexus-surface-brand`, `text-nexus-text-primary`, `border-nexus-feedback-danger-default`
+- Radius (semantics): `rounded-nexus-md`
+- Spacing (primitives): `p-nexus-16`, `gap-nexus-8`, `m-nexus-4`
+- Tipografia: `text-nexus-16` (font-size), `leading-nexus-24`, `tracking-nexus-wide`, `font-nexus-bold`
+- Efeitos: `shadow-nexus-md`, `shadow-nexus-glow-md`
+
+Primitives de cor (`--color-blue-500` etc.) ficam disponíveis apenas via `var()` em `tokens.css`, sem utility Tailwind.
 
 ## Components
 
@@ -399,3 +522,9 @@ Sempre que houver alteração que impacte o Design System, o design.md deve ser 
 - mudanças estruturais do Design System
 
 Comando: `npm run generate:ds`
+
+Fluxo ao atualizar tokens do Figma:
+
+1. Atualize `src/tokens/primitives.json`, `src/tokens/semantics.light.tokens.json` e `src/tokens/semantics.dark.tokens.json` com o export do Figma.
+2. Rode `npm run dev`, `npm run storybook` ou `npm run build`: o `generate:ds` roda automaticamente antes e tudo já está atualizado.
+3. Para só regenerar os arquivos, sem subir nada, use `npm run generate:ds`.
